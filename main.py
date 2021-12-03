@@ -2,13 +2,11 @@
 # variables yes,no = false; if answer is yes, set yes to true
 # output depend on if yes/no is true
 
-# Tkinter
-# from wxPython
 import wx
 
 
 def main():
-    print("Hello World!\nIs this a question?")
+    print("Wat is reason that you decided to go to the counsellor?")
     input_msg = "answer with 'yes' or 'no': "
     while True:
         ans = input(input_msg)
