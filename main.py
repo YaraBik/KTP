@@ -27,7 +27,7 @@ class MyPanel(wx.Panel):
                        flag=wx.ALL | wx.BOTTOM,
                        border=5)
         main_sizer.Add(self.text1, proportion=1,
-                       flag=wx.EXPAND,
+                       flag=wx.EXPAND,no
                        border=5)
         main_sizer.Add(button1, proportion=1,
                        flag=wx.EXPAND | wx.ALL,
