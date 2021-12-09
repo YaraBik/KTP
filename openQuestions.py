@@ -1,6 +1,5 @@
 import wx
 from datetime import datetime
-from main import Program
 
 
 class OpenQPanel(wx.Panel):
@@ -8,64 +7,34 @@ class OpenQPanel(wx.Panel):
         super().__init__(parent)
         self.xframe = parent
 
-        self.SetSize((800, 600))
+        self.SetSize((1000, 800))
 
-        # q1 = wx.StaticText(self, label=question)
-        # self.text1 = wx.TextCtrl(self, -1, size=(175, 50))
-        #
-        # button1 = wx.Button(self, label='Submit answer')
-        # button1.Bind(wx.EVT_BUTTON, self.on_button1)
-        #
-        # button2 = wx.Button(self, label='Quit application')
-        # button2.Bind(wx.EVT_BUTTON, self.on_button2)
+        q1 = wx.StaticText(self, label=question)
+        self.text1 = wx.TextCtrl(self, -1, size=(175, 50))
 
-        next = wx.Button(self, label='>')
-        next.Bind(wx.EVT_BUTTON, self.nextPanel)
+        self.submit_button = wx.Button(self, label='Submit answer')
+        self.submit_button.Bind(wx.EVT_BUTTON, self.submit)
 
-        prev = wx.Button(self, label='<')
-        prev.Bind(wx.EVT_BUTTON, self.previousPanel)
+        self.next = wx.Button(self, -1, "Next panel", (345, 50))
+        self.prev = wx.Button(self, -1, "Prev panel", (545, 50))
 
         main_sizer = wx.BoxSizer(wx.VERTICAL)
-        # main_sizer.Add(q1, proportion=1,
-        #                flag=wx.ALL | wx.BOTTOM,
-        #                border=10)
-        # main_sizer.Add(self.text1, proportion=1,
-        #                flag=wx.EXPAND,
-        #                border=10)
-        # main_sizer.Add(button1, proportion=1,
-        #                flag=wx.EXPAND | wx.ALL,
-        #                border=5)
-        # main_sizer.Add(button2, proportion=1,
-        #                flag=wx.EXPAND | wx.ALL,
-        #                border=5)
-        main_sizer.Add(next, proportion=1,
-                       flag=wx.EXPAND | wx.ALL,
-                       border=5)
-        main_sizer.Add(prev, proportion=1,
-                       flag=wx.EXPAND | wx.ALL,
-                       border=5)
         self.SetSizer(main_sizer)
 
-    def nextPanel(self, event):
-        parent = self.xframe
-        parent.panels[parent.question_number].Hide()
-        parent.question_number += 1
-        parent.panels[parent.question_number].Show()
-        print("Next question!")
+        main_sizer.Add(q1, proportion=1,
+                       flag=wx.ALL | wx.BOTTOM,
+                       border=10)
+        main_sizer.Add(self.text1, proportion=1,
+                       flag=wx.EXPAND,
+                       border=10)
+        main_sizer.Add(self.submit_button, proportion=1,
+                       flag=wx.EXPAND | wx.ALL,
+                       border=5)
 
-    def previousPanel(self, event):
-        parent = self.xframe
-        parent.panels[parent.question_number].Hide()
-        parent.question_number -= 1
-        parent.panels[parent.question_number].Show()
-
-    def on_button1(self, event):
+    def submit(self, event):
         answer = self.text1.GetValue()
         with open('answers.txt', 'a') as f:
             now = datetime.now()
             f.write(now.strftime("%d-%m-%Y %H:%M:%S") + ': ')
             f.write(answer)
             f.write('\n')
-
-    def on_button2(self, event):
-        self.xframe.Close()

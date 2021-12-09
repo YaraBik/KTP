@@ -1,6 +1,5 @@
-from datetime import datetime
-
 import wx
+from datetime import datetime
 
 
 class MultipleChoicePanel(wx.Panel):
@@ -27,7 +26,8 @@ class MultipleChoicePanel(wx.Panel):
         button5 = wx.Button(self, label='Always')
         button5.Bind(wx.EVT_BUTTON, self.always_button)
 
-        self.btn = wx.Button(self, -1, "Change panel", (445, 50))
+        self.next = wx.Button(self, -1, "Next panel", (345, 50))
+        self.prev = wx.Button(self, -1, "Prev panel", (545, 50))
 
         q1 = wx.StaticText(self, label=question)
 

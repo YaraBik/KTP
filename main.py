@@ -1,11 +1,7 @@
-# question: Is this a question? answers: yes/no
-# variables yes,no = false; if answer is yes, set yes to true
-# output depend on if yes/no is true
-
 import wx
 import openQuestions
 import multipleChoice
-from rangeQuestions import testFrame
+import rangeQuestions
 
 
 class Program(wx.Frame):
@@ -14,48 +10,62 @@ class Program(wx.Frame):
 
     def __init__(self):
         super().__init__(None, title='Goodbye World :] :>')
-        # p1 = multipleChoice.MultipleChoicePanel(self, "Question 1")
+        qs = [["Question 1: What is reason that you decided to go to the counsellor?", "open"], ["Question 2", "multi"], ["Question 3", "range"]]
 
         sizer = wx.BoxSizer()
         self.SetSizer(sizer)
 
-        self.panel_one = multipleChoice.MultipleChoicePanel(self, "Question 1")
+        # TODO: Make special class for introduction/explanation between questions?
+        self.panel_one = openQuestions.OpenQPanel(self, "Introduction")
         sizer.Add(self.panel_one, 1, wx.EXPAND)
-        self.panel_one.btn.Bind(wx.EVT_BUTTON, self.show_panel_two)
-        self.panel_two = multipleChoice.MultipleChoicePanel(self, "Question 2")
-        sizer.Add(self.panel_two, 1, wx.EXPAND)
-        self.panel_two.btn.Bind(wx.EVT_BUTTON, self.show_panel_one)
-        self.panel_two.Hide()
+        self.panel_one.next.Bind(wx.EVT_BUTTON, self.show_next_panel)
+        self.panel_one.prev.Hide()
+        self.panel_one.text1.Hide()
+        self.panel_one.submit_button.Hide()
+        self.panels.append(self.panel_one)
+
+        for i in range(len(qs)):
+            q = qs[i][0]
+
+            # Make correct panel based on question type
+            if qs[i][1] == "open":
+                self.panel_two = openQuestions.OpenQPanel(self, q)
+            elif qs[i][1] == "multi":
+                self.panel_two = multipleChoice.MultipleChoicePanel(self, q)
+            elif qs[i][1] == "range":
+                self.panel_two = rangeQuestions.RangeQPanel(self, q)
+
+            sizer.Add(self.panel_two, 1, wx.EXPAND)
+            self.panel_two.prev.Bind(wx.EVT_BUTTON, self.show_prev_panel)
+
+            # Only add next button when there is a panel after this
+            if i < len(qs)-1:
+                self.panel_two.next.Bind(wx.EVT_BUTTON, self.show_next_panel)
+            else:
+                self.panel_two.next.Hide()
+
+            self.panel_two.Hide()
+            self.panels.append(self.panel_two)
+
         self.SetSize((1000, 800))
         self.Centre()
 
-    def show_panel_one(self, event):
-        self.panel_one.Show()
-        self.panel_two.Hide()
+    def show_next_panel(self, event):
+        self.panels[self.question_number+1].Show()
+        self.panels[self.question_number].Hide()
+        self.question_number += 1
         self.Layout()
 
-    def show_panel_two(self, event):
-        self.panel_two.Show()
-        self.panel_one.Hide()
+    def show_prev_panel(self, event):
+        self.panels[self.question_number-1].Show()
+        self.panels[self.question_number].Hide()
+        self.question_number -= 1
         self.Layout()
-
-        # self.panels.append(openQuestions.OpenQPanel(self, "Introduction!"))
-        # self.panels[self.question_number].Show()
-        #
-        # qs = ["Question 1: What is reason that you decided to go to the counsellor?", "Question 2"]
-        # for i in range(len(qs)):
-        #     q = qs[i]
-        #     self.panels.append(openQuestions.OpenQPanel(self, q))
-        #     self.panels[i + 1].Hide()
-        #
-        # self.SetSize((800, 600))
-        # self.Centre()
 
 
 if __name__ == '__main__':
     questions = {}
     app = wx.App(redirect=False)
-    # frame = testFrame()
     frame = Program()
     frame.Show()
     app.MainLoop()
