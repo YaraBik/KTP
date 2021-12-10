@@ -1,66 +1,94 @@
+import os
 import wx
-import openQuestions
-import multipleChoice
-import rangeQuestions
+from questions import initialize_questions
 
 
 class Program(wx.Frame):
-    panels = []
-    question_number = 0
 
     def __init__(self):
         super().__init__(None, title='Goodbye World :] :>')
-        qs = [["Question 1: What is reason that you decided to go to the counsellor?", "open"], ["Question 2", "multi"], ["Question 3", "range"]]
 
+        # initialize sizer
         sizer = wx.BoxSizer()
         self.SetSizer(sizer)
 
+        # initialize question panels
+        self.panels = initialize_questions(self)
+        self.question_number = 0
+
         # TODO: Make special class for introduction/explanation between questions?
-        self.panel_one = openQuestions.OpenQPanel(self, "Introduction")
-        sizer.Add(self.panel_one, 1, wx.EXPAND)
-        self.panel_one.next.Bind(wx.EVT_BUTTON, self.show_next_panel)
-        self.panel_one.prev.Hide()
-        self.panel_one.text1.Hide()
-        self.panel_one.submit_button.Hide()
-        self.panels.append(self.panel_one)
+        # self.panel_one = openQuestions.OpenQPanel(self, "Introduction")
 
-        for i in range(len(qs)):
-            q = qs[i][0]
+        i = 0
+        for qpanel in self.panels:
+            # add panel to frame
+            sizer.Add(qpanel, 1, wx.EXPAND)
 
-            # Make correct panel based on question type
-            if qs[i][1] == "open":
-                self.panel_two = openQuestions.OpenQPanel(self, q)
-            elif qs[i][1] == "multi":
-                self.panel_two = multipleChoice.MultipleChoicePanel(self, q)
-            elif qs[i][1] == "range":
-                self.panel_two = rangeQuestions.RangeQPanel(self, q)
-
-            sizer.Add(self.panel_two, 1, wx.EXPAND)
-            self.panel_two.prev.Bind(wx.EVT_BUTTON, self.show_prev_panel)
-
-            # Only add next button when there is a panel after this
-            if i < len(qs)-1:
-                self.panel_two.next.Bind(wx.EVT_BUTTON, self.show_next_panel)
+            # add previous question button
+            if i > 0:
+                qpanel.prev.Bind(wx.EVT_BUTTON, self.show_prev_panel)
             else:
-                self.panel_two.next.Hide()
+                qpanel.prev.Hide()
 
-            self.panel_two.Hide()
-            self.panels.append(self.panel_two)
+            # add next question button
+            if i < len(self.panels) - 1:
+                qpanel.next.Bind(wx.EVT_BUTTON, self.show_next_panel)
+            else:
+                self.add_submit(qpanel)
 
+            # hide panel
+            qpanel.Hide()
+
+            i += 1
+
+        # show questions starting from the first question
+        self.panels[self.question_number].Show()
         self.SetSize((1000, 800))
         self.Centre()
 
     def show_next_panel(self, event):
-        self.panels[self.question_number+1].Show()
+        self.panels[self.question_number + 1].Show()
         self.panels[self.question_number].Hide()
         self.question_number += 1
+        print('Next panel')
         self.Layout()
 
     def show_prev_panel(self, event):
-        self.panels[self.question_number-1].Show()
+        self.panels[self.question_number - 1].Show()
         self.panels[self.question_number].Hide()
         self.question_number -= 1
+        print('Previous panel')
         self.Layout()
+
+    def add_submit(self, qpanel):
+        """
+        Creates submit button to submit answers
+        :param qpanel: Final panel in the survey
+        """
+        qpanel.next.SetLabel("Submit answers")
+        qpanel.next.Bind(wx.EVT_BUTTON, self.submit_answers)
+
+    def submit_answers(self, event):
+        """
+        Currently saves all questions and answers, then closes the program. In the future it should process the
+        results of the questions and produce some 100% emoji expert knowledge. Refuses to save or close if questions
+        are left unanswered.
+        """
+        qa = []
+        for qpanel in self.panels:
+            if qpanel.answer is None:
+                print("Imagine this is a popup window: u hebt niet alle vragen beantwoord! niet goed!")
+                return
+            qa.append(qpanel.question + ': ' + str(qpanel.answer))
+        i = 0
+        while os.path.isfile(os.getcwd() + '/reports/report' + str(i) + '.txt'):
+            i += 1
+
+        with open(os.getcwd() + '/reports/report' + str(i) + '.txt', 'a') as f:
+            for item in qa:
+                f.write('%s\n' % item)
+
+        self.Close()
 
 
 if __name__ == '__main__':
