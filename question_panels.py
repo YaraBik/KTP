@@ -127,7 +127,7 @@ class RangeQPanel(QPanel):
     Question where the answer is provided using a slider.
     """
 
-    def __init__(self, parent, question, val=(0, 5)):
+    def __init__(self, parent, question, val=(1, 5)):
         """
         Initializes range question (e.g. pick a value from 0 to 5).
         :param parent: Parent frame
