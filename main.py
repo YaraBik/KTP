@@ -47,16 +47,26 @@ class Program(wx.Frame):
         self.Centre()
 
     def show_next_panel(self, event):
-        self.panels[self.question_number + 1].Show()
+        i = 1
+        while not self.panels[self.question_number + i].check_conditions():
+            self.panels[self.question_number + i].clear_inputs()
+            i += 1
+
+        self.panels[self.question_number + i].Show()
         self.panels[self.question_number].Hide()
-        self.question_number += 1
+        self.question_number += i
         print('Next panel')
         self.Layout()
 
     def show_prev_panel(self, event):
-        self.panels[self.question_number - 1].Show()
+        i = 1
+        while not self.panels[self.question_number - i].check_conditions():
+            self.panels[self.question_number - i].clear_inputs()
+            i += 1
+
+        self.panels[self.question_number - i].Show()
         self.panels[self.question_number].Hide()
-        self.question_number -= 1
+        self.question_number -= i
         print('Previous panel')
         self.Layout()
 
@@ -76,10 +86,11 @@ class Program(wx.Frame):
         """
         qa = []
         for qpanel in self.panels:
-            if qpanel.answer is None:
+            if qpanel.answer is None and qpanel.save_answer:
                 print("Imagine this is a popup window: u hebt niet alle vragen beantwoord! niet goed!")
                 return
-            qa.append(qpanel.question + ': ' + str(qpanel.answer))
+            elif qpanel.answer is not None:
+                qa.append(qpanel.question + ': ' + str(qpanel.answer))
         i = 0
         while os.path.isfile(os.getcwd() + '/reports/report' + str(i) + '.txt'):
             i += 1
