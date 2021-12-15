@@ -1,5 +1,3 @@
-from enum import Enum
-
 import wx
 
 # this file contains everything related to creating questions, but panels and questions are define in questions.py
@@ -7,13 +5,6 @@ import wx
 
 prev_loc = (345, 50)
 next_loc = (545, 50)
-
-
-class QType(Enum):
-    OPEN = 0
-    CHOICE = 1
-    RANGE = 2
-    INFO = 3
 
 
 class ChoiceButton(wx.Button):
@@ -104,7 +95,7 @@ class OpenQPanel(QPanel):
         :param parent: Parent frame
         :param question: Question
         """
-        super().__init__(parent, question, conditions=None)
+        super().__init__(parent, question, conditions)
 
         # make text field
         self.text = wx.TextCtrl(self, -1, size=(175, 50))
