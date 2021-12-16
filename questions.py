@@ -1,4 +1,5 @@
 from question_panels import OpenQPanel, ChoiceQPanel, RangeQPanel, InfoPanel
+import os
 
 
 # this file only has the representation for questions and such. panels are done in question_panels.py
@@ -12,21 +13,39 @@ def initialize_questions(parent):
     :returns list of question panels
     """
 
-    # generic answers
-    freq_answers = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'] # generic frequency-related answers
-
     # generic conditions
-    sus_range = [0, 1, 2, 3] # 1-5 scale "low" numbers
+    sus_range = [0, 1, 2, 3]  # 1-5 scale "low" numbers
 
     # add questions
     qpanels = []
-    qpanels.append(InfoPanel(parent, 'This is an informative text'))
-    qpanels.append(OpenQPanel(parent, 'What is the reason you decided to go to the counselor?'))
-    qpanels.append(ChoiceQPanel(parent, 'How often do you sleep less than usual?', freq_answers))
-    social_life = RangeQPanel(parent,
-                              'Rate your social life from 1 to 5, with 1 being the worst and 5 being excellent.')
-    qpanels.append(social_life)
-    qpanels.append(InfoPanel(parent, 'Lmao', conditions=[(social_life, sus_range)]))
-    qpanels.append(ChoiceQPanel(parent, 'Do you suffer from headaches?'))
+    add_questions(parent, qpanels, os.getcwd() + '/questions/general.txt')
+    add_questions(parent, qpanels, os.getcwd() + '/questions/areas_of_life.txt')
+    add_questions(parent, qpanels, os.getcwd() + '/questions/sleep.txt')
+    add_questions(parent, qpanels, os.getcwd() + '/questions/activities.txt')
+    add_questions(parent, qpanels, os.getcwd() + '/questions/complaints.txt')
 
     return qpanels
+
+
+def add_questions(parent, qpanels, filename):
+    # generic answers
+    freq_answers = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always']  # generic frequency-related answers
+
+    with open(filename) as f:
+        lines = f.readlines()
+        for line in lines:
+            qtext, qtype = line.split(";")
+            qtype = qtype.replace("\n", "")
+
+            if qtype == "info":
+                qpanels.append(InfoPanel(parent, qtext))
+            elif qtype == "open":
+                qpanels.append(OpenQPanel(parent, qtext))
+            elif qtype == "range":
+                qpanels.append(RangeQPanel(parent, qtext))
+            elif qtype == "5choice":
+                qpanels.append(ChoiceQPanel(parent, qtext, freq_answers))
+            elif qtype == "2choice":
+                qpanels.append(ChoiceQPanel(parent, qtext))
+            else:
+                print("Skipped question:", line)

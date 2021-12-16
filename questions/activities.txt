@@ -1,0 +1,18 @@
+The following questions are about activities you do in a day. For this we make a distinction between activities that take effort and activities done for relaxation. Effort-activities are activities such as (volunteer) work, study, household and (informal) care. Relaxation-activities include activities such as hobbies, sports, and mental/physical self-care.;info
+Do you feel mentally exhausted during effort-activities?;5choice
+Do you feel mentally exhausted and empty at the end of the (work)day?;5choice
+Do you not get rested after completing effort-activities?;5choice
+Do you get tired quickly when you exert yourself during effort-activities?;5choice
+Do you feel a strong aversion to your effort-activities?;5choice
+Are you still able to do effort-activities?;5choice
+Are you cynical about your effort-activities?;5choice
+Do you find it difficult to pay attention to your effort-activities?;5choice
+Do you feel you have no control over your emotions during your effort-activities?;5choice
+Do you get annoyed easily when things don't go the way you want during your effort-activities?;5choice
+Do you feel too tired mentally to do relaxation-activities?;5choice
+Do you feel too tired physically to do relaxation-activities?;5choice
+Do you no longer feel interested and enthusiastic about your relaxation-activities?;5choice
+Are you cynical about your relaxation-activities?;5choice
+Do you make mistakes in your relaxation-activities because you can’t concentrate?;5choice
+Do you get irritated easily when things don't go the way you want with your relaxation-activities?;5choice
+Do you get angry or sad during your relaxation-activities without knowing why?;5choice

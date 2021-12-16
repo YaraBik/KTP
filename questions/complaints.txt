@@ -1,0 +1,7 @@
+Do you feel that you no longer have control over your life?;2choice
+Do you feel rushed and tense?;2choice
+Do you feel anxious and/or do you suffer from panic attacks?;2choice
+Do you suffer from heart palpitations or chest pain?;2choice
+Do you suffer from stomach and/or intestinal problems?;2choice
+Do you suffer from headaches?;2choice
+Do you suffer from sore muscles? (For example, in the neck, shoulder, or back.);2choice

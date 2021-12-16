@@ -1,0 +1,9 @@
+Rate the area of identity in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of work/career in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of friends, family, and social relations in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of relationships (love) in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of relaxation and fun in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of development and growth in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of health in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of living environment in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range
+Rate the area of finance in your life, how you currently experience it. 10 is excellent and 0 the worst possible.;range

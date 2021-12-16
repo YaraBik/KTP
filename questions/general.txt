@@ -1,0 +1,8 @@
+Introduction;info
+Wat is reason that you decided to go to the counsellor?;open
+Have you already visited another professional for this reason?;open
+Do you take medication for mental problems?;open
+What is your name?;open
+What is your age?;open
+What is your sex/gender identity?;open
+What is your education level?;open

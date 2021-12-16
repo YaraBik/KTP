@@ -16,9 +16,6 @@ class Program(wx.Frame):
         self.panels = initialize_questions(self)
         self.question_number = 0
 
-        # TODO: Make special class for introduction/explanation between questions?
-        # self.panel_one = openQuestions.OpenQPanel(self, "Introduction")
-
         i = 0
         for qpanel in self.panels:
             # add panel to frame

@@ -1,0 +1,4 @@
+Do you sleep less than usual?;5choice
+Do you have trouble falling asleep or staying asleep?;5choice
+When you get up in the morning, do you lack the energy to start the day?;5choice
+Do you stay awake being worried at night?;5choice
