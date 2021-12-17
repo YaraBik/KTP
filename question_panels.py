@@ -6,6 +6,8 @@ import wx
 prev_loc = (345, 50)
 next_loc = (545, 50)
 
+null_score = [0, 0, 0]  # healthy, stress, burnout
+
 
 class ChoiceButton(wx.Button):
     """
@@ -48,6 +50,7 @@ class QPanel(wx.Panel):
         self.answer = None  # stores question answer
         self.conditions = conditions  # stores selection conditions
         self.save_answer = True  # whether or not to save the answer (True by default)
+
         # prep ui stuff
         super().__init__(parent)
         self.xframe = parent
@@ -82,6 +85,13 @@ class QPanel(wx.Panel):
             if q.answer not in answers:
                 return False
         return True
+
+    def get_scores(self):
+        """
+        Retrieves the scores/state values or whatever you call them of the current answer.
+        :returns list of 3 values
+        """
+        return null_score
 
 
 class OpenQPanel(QPanel):
@@ -123,18 +133,23 @@ class ChoiceQPanel(QPanel):
     Question where the answer is a single value selected from a list.
     """
 
-    def __init__(self, parent, question, answers=('Yes', 'No'), conditions=None):
+    def __init__(self, parent, question, answers=(('Yes', [0, 0, 2]), ('No', [2, 0, 0])), conditions=None):
         """
         Initializes multiple choice question.
         :param parent: Parent frame
         :param question: Question
-        :param answers: List of answers. If not provided, 'Yes' and 'No' are used.
+        :param answers: List of answers and their associated scores. If not provided, 'Yes' and 'No' are used.
         """
         super().__init__(parent, question, conditions)
 
+        # create score dictionary
+        self.scores = {}
+        for ans, score in answers:
+            self.scores[ans] = score
+
         # initialize and add all buttons
         self.buttons = []
-        for ans in answers:
+        for ans, _ in answers:
             bt = ChoiceButton(self, label=ans)
             self.main_sizer.Add(bt, proportion=1,
                                 flag=wx.EXPAND | wx.ALL,
@@ -156,20 +171,29 @@ class ChoiceQPanel(QPanel):
             else:
                 bt.SetWindowStyleFlag(wx.NO_BORDER)
 
+    def get_scores(self):
+        if self.answer is not None:
+            return self.scores[self.answer]
+        else:
+            return null_score
+
 
 class RangeQPanel(QPanel):
     """
     Question where the answer is provided using a slider.
     """
 
-    def __init__(self, parent, question, val=(1, 5), conditions=None):
+    def __init__(self, parent, question, val=(1, 5), max_scores=(0, 0, 2), conditions=None):
         """
         Initializes range question (e.g. pick a value from 1 to 5).
         :param parent: Parent frame
         :param question: Question
+        :param max_scores: State values for the question (maximum scores for each category)
         :param val: Tuple containing slider minimum and maximum value
         """
         super().__init__(parent, question, conditions)
+
+        self.max_scores = max_scores
 
         # if min value is more than max, swap
         if val[0] > val[1]:
@@ -180,7 +204,6 @@ class RangeQPanel(QPanel):
                                 style=wx.SL_HORIZONTAL | wx.SL_AUTOTICKS | wx.SL_LABELS)
         self.slider.SetTickFreq(1)
         self.slider.Bind(wx.EVT_SLIDER, self.update_answer)
-
         # add slider
         self.main_sizer.Add(self.slider, proportion=1,
                             flag=wx.EXPAND,
@@ -196,6 +219,12 @@ class RangeQPanel(QPanel):
         super().clear_inputs()
         avg = int((self.slider.GetMin() + self.slider.GetMax()) / 2)
         self.slider.SetValue(avg)
+
+    def get_scores(self):
+        if self.answer is not None:
+            return [self.answer * val / self.slider.GetMax() for val in self.max_scores]
+        else:
+            return null_score
 
 
 class InfoPanel(QPanel):

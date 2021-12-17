@@ -45,7 +45,7 @@ class Program(wx.Frame):
 
     def show_next_panel(self, event):
         i = 1
-        while not self.panels[self.question_number + i].check_conditions():
+        while not self.panels[self.question_number + i].check_conditions() and self.question_number + i < len(self.panels):
             self.panels[self.question_number + i].clear_inputs()
             i += 1
 
@@ -82,12 +82,16 @@ class Program(wx.Frame):
         are left unanswered.
         """
         qa = []
+        score = [0, 0, 0]
         for qpanel in self.panels:
             if qpanel.answer is None and qpanel.save_answer:
                 print("Imagine this is a popup window: u hebt niet alle vragen beantwoord! niet goed!")
                 return
             elif qpanel.answer is not None:
                 qa.append(qpanel.question + ': ' + str(qpanel.answer))
+                qscore = qpanel.get_scores()
+                for i in range(len(score)):
+                    score[i] += qscore[i]
         i = 0
         while os.path.isfile(os.getcwd() + '/reports/report' + str(i) + '.txt'):
             i += 1
@@ -95,8 +99,37 @@ class Program(wx.Frame):
         with open(os.getcwd() + '/reports/report' + str(i) + '.txt', 'a') as f:
             for item in qa:
                 f.write('%s\n' % item)
+            f.write('\n Scores per category: \n')
+            f.write("\t{}:\t{}".format("HEALTHY", score[0]))
+            f.write("\t{}:\t{}".format("BURNOUT", score[1]))
+            f.write("\t{}:\t{}".format("STRESS ", score[2]))
 
         self.Close()
+
+
+def autocomplete(program):
+    """
+    Autocompleter of above program. Made so that I don't have to complete the entire program every time I want to
+    test it.
+    :param program: Take a guess
+    """
+    import question_panels
+    for qp in program.panels:
+        i = program.question_number
+        print(i, len(program.panels))
+        if isinstance(qp, question_panels.InfoPanel) and not i < len(program.panels) - 1:
+                program.submit_answers(0)
+                return
+        elif isinstance(qp, question_panels.OpenQPanel):
+            qp.text.AppendText("haha autocomplete go brrrr")
+        elif isinstance(qp, question_panels.ChoiceQPanel):
+            from random import choice
+            qp.answer = choice(list(qp.scores))
+        elif isinstance(qp, question_panels.RangeQPanel):
+            from random import randint
+            qp.slider.SetValue(randint(qp.slider.GetMin(), qp.slider.GetMax()))
+            qp.update_answer(0)
+        program.show_next_panel(0)
 
 
 if __name__ == '__main__':
@@ -104,4 +137,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
+    autocomplete(frame)
     app.MainLoop()

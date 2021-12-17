@@ -24,28 +24,41 @@ def initialize_questions(parent):
     add_questions(parent, qpanels, os.getcwd() + '/questions/activities.txt')
     add_questions(parent, qpanels, os.getcwd() + '/questions/complaints.txt')
 
+    qpanels.append(InfoPanel(parent, 'Thank you for completing these questions. Please press \'Submit answers\' to '
+                                     'submit.'))
+
     return qpanels
 
 
 def add_questions(parent, qpanels, filename):
+    """
+    Adds questions in a certain file to the master list of panels.
+    :param parent: parent frame
+    :param qpanels: List of panels
+    :param filename: Name of the file in question
+    """
     # generic answers
-    freq_answers = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always']  # generic frequency-related answers
+    freq_answers = [('Never',     [2, 0, 0]),
+                    ('Rarely',    [1, 1, 0]),
+                    ('Sometimes', [0, 2, 0]),
+                    ('Often',     [0, 1, 1]),
+                    ('Always',    [0, 0, 2])]  # generic frequency-related answers
 
     with open(filename) as f:
         lines = f.readlines()
         for line in lines:
             qtext, qtype = line.split(";")
             qtype = qtype.replace("\n", "")
-
-            if qtype == "info":
+            # different question configurations
+            if qtype == "info":  # info panel
                 qpanels.append(InfoPanel(parent, qtext))
-            elif qtype == "open":
+            elif qtype == "open":  # open question
                 qpanels.append(OpenQPanel(parent, qtext))
-            elif qtype == "range":
-                qpanels.append(RangeQPanel(parent, qtext))
-            elif qtype == "5choice":
+            elif qtype == "range":  # standard 0 - 10 range question
+                qpanels.append(RangeQPanel(parent, qtext, val=(0, 10)))
+            elif qtype == "5choice":  # standard frequency-based multiple choice
                 qpanels.append(ChoiceQPanel(parent, qtext, freq_answers))
-            elif qtype == "2choice":
+            elif qtype == "2choice":  # yes-no question
                 qpanels.append(ChoiceQPanel(parent, qtext))
             else:
                 print("Skipped question:", line)

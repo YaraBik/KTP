@@ -1,5 +1,5 @@
 Introduction;info
-Wat is reason that you decided to go to the counsellor?;open
+What is reason that you decided to go to the counsellor?;open
 Have you already visited another professional for this reason?;open
 Do you take medication for mental problems?;open
 What is your name?;open
