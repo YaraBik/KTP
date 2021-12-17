@@ -106,29 +106,26 @@ class Program(wx.Frame):
 
         self.Close()
 
-
-def autocomplete(program):
-    """
-    Autocompleter of above program.
-    :param program: Take a wild guess
-    """
-    import question_panels
-    for qp in program.panels:
-        i = program.question_number
-        print(i, len(program.panels))
-        if isinstance(qp, question_panels.InfoPanel) and not i < len(program.panels) - 1:
-                program.submit_answers(0)
+    def autocomplete(self):
+        """
+        Autocompletes all questions.
+        """
+        import question_panels
+        for qp in self.panels:
+            i = self.question_number
+            if isinstance(qp, question_panels.InfoPanel) and not i < len(self.panels) - 1:
+                self.submit_answers(0)
                 return
-        elif isinstance(qp, question_panels.OpenQPanel):
-            qp.text.AppendText("haha autocomplete go brrrr")
-        elif isinstance(qp, question_panels.ChoiceQPanel):
-            from random import choice
-            qp.answer = choice(list(qp.scores))
-        elif isinstance(qp, question_panels.RangeQPanel):
-            from random import randint
-            qp.slider.SetValue(randint(qp.slider.GetMin(), qp.slider.GetMax()))
-            qp.update_answer(0)
-        program.show_next_panel(0)
+            elif isinstance(qp, question_panels.OpenQPanel):
+                qp.text.AppendText("haha autocomplete go brrrr")
+            elif isinstance(qp, question_panels.ChoiceQPanel):
+                from random import choice
+                qp.answer = choice(list(qp.scores))
+            elif isinstance(qp, question_panels.RangeQPanel):
+                from random import randint
+                qp.slider.SetValue(randint(qp.slider.GetMin(), qp.slider.GetMax()))
+                qp.update_answer(0)
+            self.show_next_panel(0)
 
 
 if __name__ == '__main__':
@@ -136,5 +133,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    # autocomplete(frame)
+    #frame.autocomplete()
     app.MainLoop()
