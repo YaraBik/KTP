@@ -110,7 +110,7 @@ class Program(wx.Frame):
 def autocomplete(program):
     """
     Autocompleter of above program.
-    :param program: Take a guess
+    :param program: Take a wild guess
     """
     import question_panels
     for qp in program.panels:
