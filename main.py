@@ -109,8 +109,7 @@ class Program(wx.Frame):
 
 def autocomplete(program):
     """
-    Autocompleter of above program. Made so that I don't have to complete the entire program every time I want to
-    test it.
+    Autocompleter of above program.
     :param program: Take a guess
     """
     import question_panels
@@ -137,5 +136,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    autocomplete(frame)
+    # autocomplete(frame)
     app.MainLoop()
