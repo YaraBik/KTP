@@ -62,7 +62,7 @@ class Program(wx.Frame):
     def show_next_panel(self, event):
         self.update_symptoms()
         i = 1
-        while not self.question_number + i < len(self.panels) and self.panels[self.question_number + i].check_prerequisites(self.symptoms):
+        while self.question_number + i < len(self.panels) and not self.panels[self.question_number + i].check_prerequisites(self.symptoms):
             self.panels[self.question_number + i].clear_inputs()
             i += 1
 
@@ -173,5 +173,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    frame.autocomplete()
+    #frame.autocomplete()
     app.MainLoop()

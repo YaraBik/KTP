@@ -95,6 +95,7 @@ class QPanel(wx.Panel):
         :param flags: set of current flags/symptoms
         :returns True if prerequisites satisfied, otherwise False.
         """
+
         if self.prerequisites is None:
             return True
 
