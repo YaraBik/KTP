@@ -11,11 +11,11 @@ def init_panel(parent, question_line, type_line):
     :returns Initialized panel
     """
     # generic answers
-    freq_answers = [('Never', [2, 0, 0]),
-                    ('Rarely', [1, 1, 0]),
-                    ('Sometimes', [0, 2, 0]),
-                    ('Often', [0, 1, 1]),
-                    ('Always', [0, 0, 2])]  # generic frequency-related answers
+    freq_answers = [('Never', [10, 0, 0]),
+                    ('Rarely', [5, 5, 0]),
+                    ('Sometimes', [0, 10, 0]),
+                    ('Often', [0, 5, 5]),
+                    ('Always', [0, 0, 10])]  # generic frequency-related answers
 
     qtext = question_line[4:]
     qtype = type_line[4:]
@@ -28,15 +28,15 @@ def init_panel(parent, question_line, type_line):
     if qtype == "FREQ":
         return ChoiceQPanel(parent, qtext, freq_answers)
     elif qtype == "RATE7":
-        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(2, 0, 0))
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(10, 0, 0))
         qp.set_threshold(7)
         return qp
     elif qtype == "RATE8":
-        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(2, 0, 0))
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(10, 0, 0))
         qp.set_threshold(8)
         return qp
     elif qtype == "RATE9":
-        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(2, 0, 0))
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(10, 0, 0))
         qp.set_threshold(9)
         return qp
     else:

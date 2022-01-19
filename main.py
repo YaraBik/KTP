@@ -53,26 +53,23 @@ class Program(wx.Frame):
         sy = self.panels[self.question_number].get_symptoms()
 
         if sy is None:
-            print(self.symptoms)
             return
         elif sy[0] == '!' and sy[1:] in self.symptoms:
             self.symptoms.remove(sy[1:])
         elif sy[0] != '!' and sy not in self.symptoms:
             self.symptoms.append(sy)
 
-        print(self.symptoms)
-
     def show_next_panel(self, event):
         self.update_symptoms()
         i = 1
-        while not self.panels[self.question_number + i].check_prerequisites(self.symptoms) and self.question_number + i < len(self.panels):
+        while not self.question_number + i < len(self.panels) and self.panels[self.question_number + i].check_prerequisites(self.symptoms):
             self.panels[self.question_number + i].clear_inputs()
             i += 1
 
         self.panels[self.question_number + i].Show()
         self.panels[self.question_number].Hide()
         self.question_number += i
-        print('Next panel')
+        #print('Next panel')
         self.Layout()
 
     def show_prev_panel(self, event):
@@ -85,7 +82,7 @@ class Program(wx.Frame):
         self.panels[self.question_number - i].Show()
         self.panels[self.question_number].Hide()
         self.question_number -= i
-        print('Previous panel')
+        #print('Previous panel')
         self.Layout()
 
     def add_submit(self, qpanel):
@@ -120,11 +117,33 @@ class Program(wx.Frame):
         with open(os.getcwd() + '/reports/report' + str(i) + '.txt', 'a') as f:
             for item in qa:
                 f.write('%s\n' % item)
-            f.write('\n Scores per category: \n')
+
+            f.write('SYMPTOMS: ')
+            for sy in self.symptoms:
+                f.write('%s, ' % sy)
+            f.write('\n')
+
+            f.write('\n Raw scores per category: \n')
             f.write("\t{}:\t{}".format("HEALTHY", score[0]))
             f.write("\t{}:\t{}".format("BURNOUT", score[1]))
             f.write("\t{}:\t{}".format("STRESS ", score[2]))
 
+            total = sum(score)
+            healthy = round(score[0] / total, 3)
+            stress = round(score[1] / total, 3)
+            burnout = round(score[2] / total, 3)
+
+            f.write('\n Probabilities per category (based on scores): \n')
+            f.write("\t{}:\t{}".format("HEALTHY", healthy))
+            f.write("\t{}:\t{}".format("BURNOUT", stress))
+            f.write("\t{}:\t{}".format("STRESS ", burnout))
+            f.write("\n Based on the probabilities, the following condition is the most likely: ")
+            if healthy > max(burnout,stress):
+                f.write("HEALTHY\n")
+            elif stress > burnout:
+                f.write("STRESS\n")
+            else:
+                f.write("BURNOUT\n")
         self.Close()
 
     def autocomplete(self):
@@ -154,5 +173,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    #frame.autocomplete()
+    frame.autocomplete()
     app.MainLoop()
