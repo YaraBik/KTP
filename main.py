@@ -17,7 +17,7 @@ class Program(wx.Frame):
         # initialize question panels
         self.panels = initialize_questions(self)
         self.question_number = 0
-        self.symptoms = [] # flags of "symptoms" that are present (used for question selection)
+        self.symptoms = []  # flags of "symptoms" that are present (used for question selection)
 
         i = 0
         for qpanel in self.panels:
@@ -62,14 +62,18 @@ class Program(wx.Frame):
     def show_next_panel(self, event):
         self.update_symptoms()
         i = 1
-        while self.question_number + i < len(self.panels) and not self.panels[self.question_number + i].check_prerequisites(self.symptoms):
+        while self.question_number + i < len(self.panels) and not self.panels[
+            self.question_number + i].check_prerequisites(self.symptoms):
             self.panels[self.question_number + i].clear_inputs()
             i += 1
+
+        if self.question_number + i >= len(self.panels):
+            i = len(self.panels) - 1 - self.question_number
 
         self.panels[self.question_number + i].Show()
         self.panels[self.question_number].Hide()
         self.question_number += i
-        #print('Next panel')
+        # print('Next panel')
         self.Layout()
 
     def show_prev_panel(self, event):
@@ -82,7 +86,7 @@ class Program(wx.Frame):
         self.panels[self.question_number - i].Show()
         self.panels[self.question_number].Hide()
         self.question_number -= i
-        #print('Previous panel')
+        # print('Previous panel')
         self.Layout()
 
     def add_submit(self, qpanel):
@@ -137,13 +141,32 @@ class Program(wx.Frame):
             f.write("\t{}:\t{}".format("HEALTHY", healthy))
             f.write("\t{}:\t{}".format("BURNOUT", stress))
             f.write("\t{}:\t{}".format("STRESS ", burnout))
-            f.write("\n Based on the probabilities, the following condition is the most likely: ")
-            if healthy > max(burnout,stress):
-                f.write("HEALTHY\n")
-            elif stress > burnout:
-                f.write("STRESS\n")
+            f.write("\n Based on the probabilities, the diagnosis is: ")
+
+            highest = max(healthy, stress, burnout)
+            if highest > 0.9:
+                f.write("EXTREMELY LIKELY ")
+            elif highest > 0.7:
+                f.write("VERY LIKELY ")
+            elif highest > 0.5:
+                f.write("LIKELY ")
             else:
-                f.write("BURNOUT\n")
+                f.write("POSSIBLE ")
+
+            if healthy > max(burnout, stress):
+                f.write("HEALTHY.")
+                if burnout > healthy / 2:
+                    " SIGNS OF BURNOUT."
+                if stress > healthy / 2:
+                    " SIGNS OF STRESS."
+            elif stress > burnout:
+                f.write("STRESS")
+                if burnout > stress / 2:
+                    " SIGNS OF BURNOUT."
+            else:
+                f.write("BURNOUT")
+
+            f.write("\n")
         self.Close()
 
     def autocomplete(self):
@@ -153,7 +176,7 @@ class Program(wx.Frame):
         import question_panels
         for qp in self.panels:
             i = self.question_number
-            if isinstance(qp, question_panels.InfoPanel) and not i < len(self.panels) - 1:
+            if isinstance(qp, question_panels.InfoPanel) and i == len(self.panels) - 1:
                 self.submit_answers(0)
                 return
             elif isinstance(qp, question_panels.OpenQPanel):
@@ -173,5 +196,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    #frame.autocomplete()
+    frame.autocomplete()
     app.MainLoop()
