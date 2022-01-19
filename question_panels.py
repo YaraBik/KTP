@@ -1,8 +1,5 @@
 import wx
 
-# this file contains everything related to creating questions, but panels and questions are define in questions.py
-# probably gotta change that later
-
 prev_loc = (345, 50)
 next_loc = (545, 50)
 
@@ -38,19 +35,17 @@ class QPanel(wx.Panel):
     General question panel.
     """
 
-    def __init__(self, parent, question, conditions):
+    def __init__(self, parent, question):
         """
         Initializes general question panel. Please use this class's children instead.
         :param parent: Parent panel
         :param question: Question.
-        :param conditions: List of answers required from certain previous panels for the current question to appear.
-        Each condition is a (question,answers) tuple. Optional, value provided by children.
         """
         self.question = question
         self.answer = None  # stores question answer
-        self.conditions = conditions  # stores selection conditions
         self.save_answer = True  # whether or not to save the answer (True by default)
-
+        self.prerequisites = None  # set later
+        self.symptom = None  # set later
         # prep ui stuff
         super().__init__(parent)
         self.xframe = parent
@@ -67,24 +62,53 @@ class QPanel(wx.Panel):
                             border=5)
         self.SetSizer(self.main_sizer)
 
+    def get_symptoms(self):
+        """
+        Returns the symptom or None based on the stored answer
+        :returns symptom or None
+        """
+        return self.symptom
+
+    def set_symptoms(self, symptom):
+        """
+        Sets symptoms to whatever's provided
+        :param symptom: Provided symptom
+        """
+        self.symptom = symptom
+
+    def set_prerequisites(self, psets):
+        """
+        Sets prerequisites to whatever's provided
+        :param psets: Prerequisite sets (list of AND symptoms, only one list needs to be fulfilled for truth)
+        """
+        self.prerequisites = psets
+
     def clear_inputs(self):
         """
         Clears question input and answers and sets the answer to None.
         """
         self.answer = None
 
-    def check_conditions(self):
+    def check_prerequisites(self, flags):
         """
-        Check if the question's conditions to be asked are satisfied.
-        :returns True if conditions satisfied, otherwise False.
+        Check if the question's prerequisites to be asked are satisfied.
+        :param flags: set of current flags/symptoms
+        :returns True if prerequisites satisfied, otherwise False.
         """
-        if self.conditions is None:
+        if self.prerequisites is None:
             return True
 
-        for q, answers in self.conditions:
-            if q.answer not in answers:
-                return False
-        return True
+        for pset in self.prerequisites:  # every set of AND must be checked, if one goes through conditions are filled
+            for i, pr in enumerate(pset):
+
+                if pr[0] == '!' and pr[1:] in flags:  # check failure conditions for the set
+                    continue
+                elif pr[0] != '!' and pr not in flags:
+                    continue
+
+                if i + 1 == len(pset):  # all flags/symptoms satisfied, return True
+                    return True
+        return False
 
     def get_scores(self):
         """
@@ -99,13 +123,13 @@ class OpenQPanel(QPanel):
     Open question. Not used for inference, but for general information (relevant in the real-life context).
     """
 
-    def __init__(self, parent, question, conditions=None):
+    def __init__(self, parent, question):
         """
         Initializes open question.
         :param parent: Parent frame
         :param question: Question
         """
-        super().__init__(parent, question, conditions)
+        super().__init__(parent, question)
 
         # make text field
         self.text = wx.TextCtrl(self, -1, size=(175, 50))
@@ -133,14 +157,14 @@ class ChoiceQPanel(QPanel):
     Question where the answer is a single value selected from a list.
     """
 
-    def __init__(self, parent, question, answers=(('Yes', [0, 0, 2]), ('No', [2, 0, 0])), conditions=None):
+    def __init__(self, parent, question, answers=(('Yes', [0, 0, 2]), ('No', [2, 0, 0]))):
         """
         Initializes multiple choice question.
         :param parent: Parent frame
         :param question: Question
         :param answers: List of answers and their associated scores. If not provided, 'Yes' and 'No' are used.
         """
-        super().__init__(parent, question, conditions)
+        super().__init__(parent, question)
 
         # create score dictionary
         self.scores = {}
@@ -177,13 +201,23 @@ class ChoiceQPanel(QPanel):
         else:
             return null_score
 
+    def get_symptoms(self):
+        """
+        Returns the symptom or None based on the stored answer
+        :returns symptom or None
+        """
+        if self.answer in ['Sometimes', 'Often', 'Always']:
+            return self.symptom
+        else:
+            return '!' + self.symptom
+
 
 class RangeQPanel(QPanel):
     """
     Question where the answer is provided using a slider.
     """
 
-    def __init__(self, parent, question, val=(1, 5), max_scores=(0, 0, 2), conditions=None):
+    def __init__(self, parent, question, val=(1, 5), max_scores=(0, 0, 2)):
         """
         Initializes range question (e.g. pick a value from 1 to 5).
         :param parent: Parent frame
@@ -191,8 +225,9 @@ class RangeQPanel(QPanel):
         :param max_scores: State values for the question (maximum scores for each category)
         :param val: Tuple containing slider minimum and maximum value
         """
-        super().__init__(parent, question, conditions)
+        super().__init__(parent, question)
 
+        self.symptom_threshold = 8  # anything below this value counts as a symptom
         self.max_scores = max_scores
 
         # if min value is more than max, swap
@@ -208,6 +243,13 @@ class RangeQPanel(QPanel):
         self.main_sizer.Add(self.slider, proportion=1,
                             flag=wx.EXPAND,
                             border=10)
+
+    def set_threshold(self, th):
+        """
+        Sets symptom threshold
+        :param th: Integer
+        """
+        self.symptom_threshold = th
 
     def update_answer(self, event):
         """
@@ -226,17 +268,30 @@ class RangeQPanel(QPanel):
         else:
             return null_score
 
+    def get_symptoms(self):
+        """
+        Returns the symptom or None based on the stored answer
+        :returns symptom or None
+        """
+        if self.answer is None:
+            return None
+
+        if self.answer < self.symptom_threshold:  # if they rate something less than that, there's a problem.
+            return self.symptom
+        else:
+            return '!' + self.symptom
+
 
 class InfoPanel(QPanel):
     """
     Panel with informative text.
     """
 
-    def __init__(self, parent, text, conditions=None):
+    def __init__(self, parent, text):
         """
         Initializes information panel.
         :param parent: Parent frame
         :param text: Info text
         """
-        super().__init__(parent, text, conditions)
+        super().__init__(parent, text)
         self.save_answer = False

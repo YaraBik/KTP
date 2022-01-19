@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import wx
 from questions import initialize_questions
@@ -15,6 +17,7 @@ class Program(wx.Frame):
         # initialize question panels
         self.panels = initialize_questions(self)
         self.question_number = 0
+        self.symptoms = [] # flags of "symptoms" that are present (used for question selection)
 
         i = 0
         for qpanel in self.panels:
@@ -43,9 +46,26 @@ class Program(wx.Frame):
         self.SetSize((1000, 800))
         self.Centre()
 
+    def update_symptoms(self):
+        """
+        Update symptoms stored in the symptom list.
+        """
+        sy = self.panels[self.question_number].get_symptoms()
+
+        if sy is None:
+            print(self.symptoms)
+            return
+        elif sy[0] == '!' and sy[1:] in self.symptoms:
+            self.symptoms.remove(sy[1:])
+        elif sy[0] != '!' and sy not in self.symptoms:
+            self.symptoms.append(sy)
+
+        print(self.symptoms)
+
     def show_next_panel(self, event):
+        self.update_symptoms()
         i = 1
-        while not self.panels[self.question_number + i].check_conditions() and self.question_number + i < len(self.panels):
+        while not self.panels[self.question_number + i].check_prerequisites(self.symptoms) and self.question_number + i < len(self.panels):
             self.panels[self.question_number + i].clear_inputs()
             i += 1
 
@@ -56,8 +76,9 @@ class Program(wx.Frame):
         self.Layout()
 
     def show_prev_panel(self, event):
+        self.update_symptoms()
         i = 1
-        while not self.panels[self.question_number - i].check_conditions():
+        while not self.panels[self.question_number - i].check_prerequisites(self.symptoms):
             self.panels[self.question_number - i].clear_inputs()
             i += 1
 
@@ -84,7 +105,7 @@ class Program(wx.Frame):
         qa = []
         score = [0, 0, 0]
         for qpanel in self.panels:
-            if qpanel.answer is None and qpanel.save_answer:
+            if qpanel.answer is None and qpanel.save_answer and qpanel.check_prerequisites(self.symptoms):
                 print("Imagine this is a popup window: u hebt niet alle vragen beantwoord! niet goed!")
                 return
             elif qpanel.answer is not None:
