@@ -1,0 +1,41 @@
+Rate work/career 0 to 10?: 6
+Rate relaxation 0 to 10?: 1
+Rate health 0 to 10?: 4
+Do you have problems with sleep?: Sometimes
+Do you sleep less than usual?: Often
+Do you have trouble falling asleep?: Never
+When you get up in the morning, do you lack the energy to start the day?: Often
+Do you stay awake being worried at night?: Often
+Do you have problems doing effort activities?: Always
+Do you feel mentally exhausted during effort-activities?: Always
+Do you feel mentally exhausted and empty at the end of the (work)day?: Never
+Do you not get rested after completing effort-activities?: Sometimes
+Do you get tired quickly when you exert yourself during effort-activities?: Often
+Do you feel a strong aversion to your effort-activities?: Always
+Are you still able to do effort-activities?: Never
+Are you cynical about your effort-activities?: Often
+Do you find it difficult to pay attention to your effort-activities?: Always
+Do you feel you have no control over your emotions during your effort-activities?: Always
+Do you get annoyed easily when things don't go the way you want during your effort-activities?: Often
+Do you have problems doing relaxation activities?: Often
+Do you feel too tired mentally to do relaxation-activities?: Sometimes
+Do you feel too tired physically to do relaxation-activities?: Sometimes
+Do you no longer feel interested and enthusiastic about your relaxation-activities?: Rarely
+Are you cynical about your relaxation-activities?: Sometimes
+Do you make mistakes in your relaxation-activities because you can’t concentrate?: Rarely
+Do you get irritated easily when things don't go the way you want with your relaxation-activities?: Never
+Do you get angry or sad during your relaxation-activities without knowing why?: Rarely
+Do you feel that you no longer have control over your life?: Often
+Do you feel rushed and tense?: Often
+Do you feel anxious and/or do you suffer from panic attacks?: Rarely
+Do you suffer from heart palpitations or chest pain?: Rarely
+Do you suffer from stomach and/or intestinal problems?: Rarely
+Do you suffer from headaches?: Rarely
+Do you suffer from sore muscles? (For example, in the neck, shoulder, or back.): Often
+SYMPTOMS: career, relaxation, health, Sleep_problems, less_sleep, lack_energy_start_day, 
+
+ Raw scores per category: 
+	HEALTHY:	86.0	BURNOUT:	135.0	STRESS :	100.0
+ Probabilities per category (based on scores): 
+	HEALTHY:	0.268	BURNOUT:	0.421	STRESS :	0.312
+ Based on the probabilities, the diagnosis is: POSSIBLE STRESS
