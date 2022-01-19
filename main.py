@@ -196,5 +196,5 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    frame.autocomplete()
+    # frame.autocomplete()
     app.MainLoop()
