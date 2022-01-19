@@ -99,17 +99,20 @@ class QPanel(wx.Panel):
         if self.prerequisites is None:
             return True
 
-        for pset in self.prerequisites:  # every set of AND must be checked, if one goes through conditions are filled
+        conditions_satisfied = True
+        for pset in self.prerequisites:  # every set of OR must be checked, all need to be true
+            conditions_satisfied = False
             for i, pr in enumerate(pset):
+                if pr[0] == '!' and pr[1:] not in flags:  # check failure conditions for the set
+                    conditions_satisfied = True
+                elif pr[0] != '!' and pr in flags:
+                    conditions_satisfied = True
 
-                if pr[0] == '!' and pr[1:] in flags:  # check failure conditions for the set
-                    continue
-                elif pr[0] != '!' and pr not in flags:
-                    continue
-
-                if i + 1 == len(pset):  # all flags/symptoms satisfied, return True
-                    return True
-        return False
+                # if i + 1 == len(pset):  # all flags/symptoms satisfied
+                #     conditions_satisfied = True
+            if not conditions_satisfied:  # not all conditions satisfied, return false
+                return False
+        return True
 
     def get_scores(self):
         """
@@ -211,6 +214,30 @@ class ChoiceQPanel(QPanel):
             return self.symptom
         else:
             return '!' + self.symptom
+    def check_prerequisites(self, flags):
+        """
+        Check if the question's prerequisites to be asked are satisfied.
+        :param flags: set of current flags/symptoms
+        :returns True if prerequisites satisfied, otherwise False.
+        """
+
+        if self.prerequisites is None:
+            return True
+
+        conditions_satisfied = True
+        for pset in self.prerequisites:  # every set of OR must be checked, all need to be true
+            conditions_satisfied = False
+            for i, pr in enumerate(pset):
+                if pr[0] == '!' and pr[1:] not in flags:  # check failure conditions for the set
+                    conditions_satisfied = True
+                elif pr[0] != '!' and pr in flags:
+                    conditions_satisfied = True
+
+                # if i + 1 == len(pset):  # all flags/symptoms satisfied
+                #     conditions_satisfied = True
+            if not conditions_satisfied:  # not all conditions satisfied, return false
+                return False
+        return True
 
 
 class RangeQPanel(QPanel):

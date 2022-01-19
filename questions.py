@@ -19,7 +19,7 @@ def init_panel(parent, question_line, type_line):
 
     qtext = question_line[4:]
     qtype = type_line[4:]
-    #print(f"QUESTION: {qtext}")
+    # print(f"QUESTION: {qtext}")
     qtext = qtext.removeprefix(' ')
     qtype = qtype.removeprefix(' ')
     qtext = qtext.removesuffix('\n')
@@ -27,16 +27,24 @@ def init_panel(parent, question_line, type_line):
 
     if qtype == "FREQ":
         return ChoiceQPanel(parent, qtext, freq_answers)
+    elif qtype == "OPEN":
+        return OpenQPanel(parent, qtext)
+    elif qtype == "INFO":
+        return InfoPanel(parent, qtext)
+    elif qtype == "RATE":
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(0, 0, 0))
+        qp.set_threshold(5)
+        return qp
     elif qtype == "RATE7":
-        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(10, 0, 0))
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(0, 0, 0))
         qp.set_threshold(7)
         return qp
     elif qtype == "RATE8":
-        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(10, 0, 0))
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(0, 0, 0))
         qp.set_threshold(8)
         return qp
     elif qtype == "RATE9":
-        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(10, 0, 0))
+        qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(0, 0, 0))
         qp.set_threshold(9)
         return qp
     else:
@@ -52,9 +60,9 @@ def set_panel_prereq(qp, prereq_line):
     """
     prerequisites = prereq_line[4:]
     prerequisites = prerequisites.removeprefix(' ')
-    prerequisites = prerequisites.split(' or ')
+    prerequisites = prerequisites.split(', ')
     for i, s in enumerate(prerequisites):
-        pset = s.split(',')
+        pset = s.split(' or ')
         for j, p in enumerate(pset):
             p = p.removeprefix(' ')
             p = p.removesuffix(' ')
@@ -63,7 +71,7 @@ def set_panel_prereq(qp, prereq_line):
         prerequisites[i] = pset
     if prerequisites == [['']]:
         prerequisites = None
-    #print(f"PREREQUISITES: {prerequisites}")
+    # print(f"PREREQUISITES: {prerequisites}")
     qp.set_prerequisites(prerequisites)
 
 

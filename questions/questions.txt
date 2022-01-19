@@ -1,14 +1,84 @@
-QUE: Rate work/career 0 to 10?
+QUE: Introduction
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Wat is reason that you decided to go to the counsellor?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Have you already visited another professional for this reason?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Do you take medication for mental problems?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your name?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your age?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your sex/gender identity?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your education level?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Rate the area identity of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: identity
+
+QUE: Rate the area friends/family/social relations of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: social
+
+QUE: Rate the area relationships of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: relationship
+
+QUE: Rate the area development/growth of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: meaningfullness
+
+QUE: Rate the area living environment of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: living
+
+QUE: Rate the area finances of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: finances
+
+QUE: Rate the area work/career of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
 TYP: RATE8
 PRE:
 SYM: career
 
-QUE: Rate relaxation 0 to 10?
+QUE: Rate the area relaxation of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
 TYP: RATE8
 PRE:
 SYM: relaxation
 
-QUE: Rate health 0 to 10?
+QUE: Rate the area health of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
 TYP: RATE9
 PRE:
 SYM: health
@@ -37,6 +107,11 @@ QUE: Do you stay awake being worried at night?
 TYP: FREQ
 PRE: difficulty_falling_asleep
 SYM: Worried
+
+QUE: The following questions are about activities you do in a day. For this we make a distinction between activities that take effort and activities done for relaxation. Effort-activities are activities such as (volunteer) work, study, household and (informal) care. Relaxation-activities include activities such as hobbies, sports, and mental/physical self-care.
+TYP: INFO
+PRE:
+SYM: none
 
 QUE: Do you have problems doing effort activities?
 TYP: FREQ
