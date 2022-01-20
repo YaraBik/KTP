@@ -19,11 +19,12 @@ def init_panel(parent, question_line, type_line):
 
     qtext = question_line[4:]
     qtype = type_line[4:]
-    # print(f"QUESTION: {qtext}")
     qtext = qtext.removeprefix(' ')
     qtype = qtype.removeprefix(' ')
     qtext = qtext.removesuffix('\n')
     qtype = qtype.removesuffix('\n')
+    qtext = qtext.replace("\\n", "\n")
+    # print(f"QUESTION: {qtext}")
 
     if qtype == "FREQ":
         return ChoiceQPanel(parent, qtext, freq_answers)
@@ -33,7 +34,7 @@ def init_panel(parent, question_line, type_line):
         return InfoPanel(parent, qtext)
     elif qtype == "RATE":
         qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(0, 0, 0))
-        qp.set_threshold(5)
+        qp.set_threshold(6)
         return qp
     elif qtype == "RATE7":
         qp = RangeQPanel(parent, qtext, val=(0, 10), max_scores=(0, 0, 0))
