@@ -1,7 +1,7 @@
 import wx
 
-prev_loc = (345, 50)
-next_loc = (545, 50)
+prev_loc = (345, 100)
+next_loc = (545, 100)
 
 null_score = [0, 0, 0]  # healthy, stress, burnout
 
@@ -17,7 +17,7 @@ class ChoiceButton(wx.Button):
         :param parent: Parent panel
         :param label: Button label
         """
-        super().__init__(parent, label=label)
+        super().__init__(parent, label=label, size=(200, 100))
         self.parent = parent
         self.label = label
         self.Bind(wx.EVT_BUTTON, self.update_answer)
@@ -56,6 +56,7 @@ class QPanel(wx.Panel):
         self.next = wx.Button(self, -1, "Next question", next_loc)
 
         qtext = wx.StaticText(self, label=question)
+
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
         self.main_sizer.Add(qtext, proportion=1,
                             flag=wx.ALL | wx.BOTTOM,
@@ -179,6 +180,7 @@ class ChoiceQPanel(QPanel):
         self.buttons = []
         for ans, _ in answers:
             bt = ChoiceButton(self, label=ans)
+
             self.main_sizer.Add(bt, proportion=1,
                                 flag=wx.EXPAND | wx.ALL,
                                 border=5)
