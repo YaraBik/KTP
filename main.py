@@ -141,8 +141,8 @@ class Program(wx.Frame):
 
             f.write('\n Raw scores per category: \n')
             f.write("\t{}:\t{}".format("HEALTHY", score[0]))
-            f.write("\t{}:\t{}".format("BURNOUT", score[1]))
-            f.write("\t{}:\t{}".format("STRESS ", score[2]))
+            f.write("\t{}:\t{}".format("STRESS ", score[1]))
+            f.write("\t{}:\t{}".format("BURNOUT", score[2]))
 
             total = sum(score)
             healthy = round(score[0] / total, 3)
@@ -151,8 +151,8 @@ class Program(wx.Frame):
 
             f.write('\n Probabilities per category (based on scores): \n')
             f.write("\t{}:\t{}".format("HEALTHY", healthy))
-            f.write("\t{}:\t{}".format("BURNOUT", stress))
-            f.write("\t{}:\t{}".format("STRESS ", burnout))
+            f.write("\t{}:\t{}".format("STRESS ", stress))
+            f.write("\t{}:\t{}".format("BURNOUT", burnout))
             f.write("\n Based on the probabilities, the diagnosis is: ")
 
             highest = max(healthy, stress, burnout)
