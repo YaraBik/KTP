@@ -163,7 +163,7 @@ class Program(wx.Frame):
                 f.write("POSSIBLE ")
 
             # lots of healthy and lots of burnout could mean stress
-            if max(healthy, burnout) >= stress and (abs(healthy - burnout) <= 20.00):
+            if max(healthy, burnout) >= stress and (abs(healthy - burnout) <= 0.1):
                 f.write("STRESS DUE TO HIGH SCORE FOR BOTH HEALTHY AND BURNOUT.")
             elif healthy > max(burnout, stress):
                 f.write("HEALTHY")
