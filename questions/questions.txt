@@ -1,20 +1,10 @@
-QUE: Introduction
+QUE: You will get some questions about the current experiences in your life. These questions are categorised into general-, sleep-, activities-, and complaint questions. When you answer these questions it is important to compare your current situation to your normal experiences. \nYou can go the next question by pressing the button "Next question" and go back to the previous question by pressing the button "Prev question". The answers can only be submitted when all questions have been answered. \nThe outcome gotten from these questions will be discussed with you by your counselor in the next session. \nGood luck answering the questions!
 TYP: INFO
 PRE:
 SYM: none
 
-QUE: Wat is reason that you decided to go to the counsellor?
-TYP: OPEN
-PRE:
-SYM: none
-
-QUE: Have you already visited another professional for this reason?
-TYP: OPEN
-PRE:
-SYM: none
-
-QUE: Do you take medication for mental problems?
-TYP: OPEN
+QUE: First we will ask some open questions. \nPlease type your answer in the white textbox at the bottom of the screen.
+TYP: INFO
 PRE:
 SYM: none
 
@@ -38,7 +28,27 @@ TYP: OPEN
 PRE:
 SYM: none
 
-QUE: Rate the area identity of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+QUE: What is reason that you decided to go to the counsellor?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Have you already visited another professional for this reason?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Do you take medication for mental problems?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Next we have some general questions about different areas in your life. \nTo answer these questions, you can use the slider below by sliding the indicator to the desired value.
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Rate the area identity, self-image of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
 TYP: RATE
 PRE:
 SYM: identity
@@ -83,6 +93,11 @@ TYP: RATE9
 PRE:
 SYM: health
 
+QUE: We will now ask more specific questions. It is important to keep in mind that the questions need to be answered based on comparing the current situation with the for you normal situation, as explained before in the introduction. \n \nThe first questions will be about sleep.
+TYP: INFO
+PRE:
+SYM: none
+
 QUE: Do you have problems with sleep?
 TYP: FREQ
 PRE:
@@ -108,7 +123,7 @@ TYP: FREQ
 PRE: difficulty_falling_asleep
 SYM: Worried
 
-QUE: The following questions are about activities you do in a day. For this we make a distinction between activities that take effort and activities done for relaxation. Effort-activities are activities such as (volunteer) work, study, household and (informal) care. Relaxation-activities include activities such as hobbies, sports, and mental/physical self-care.
+QUE: The following questions are about activities you do in a day. For this we make a distinction between activities that take effort and activities done for relaxation. \nEffort-activities are activities such as (volunteer) work, study, household and (informal) care. \nRelaxation-activities include activities such as hobbies, sports, and mental/physical self-care. \n \nWe will start with the questions about effort-activities.
 TYP: INFO
 PRE:
 SYM: none
@@ -168,6 +183,11 @@ TYP: FREQ
 PRE: career or problem_effort, loss_control_emotions_effort
 SYM: annoyed_effort
 
+QUE: These were the questions about effort-activities. \n \nNow we will focus on the relaxation activities (e.g. hobbies and sports).
+TYP: INFO
+PRE:
+SYM: none
+
 QUE: Do you have problems doing relaxation activities?
 TYP: FREQ
 PRE: !relaxation
@@ -193,7 +213,7 @@ TYP: FREQ
 PRE: relaxation or problem_relaxation, loss_interest_relaxation
 SYM: cynical_relaxation
 
-QUE: Do you make mistakes in your relaxation-activities because you can’t concentrate?
+QUE: Do you make mistakes in your relaxation-activities because you cannot concentrate?
 TYP: FREQ
 PRE: relaxation or problem_relaxation
 SYM: concentration_problem_relaxation
@@ -207,6 +227,11 @@ QUE: Do you get angry or sad during your relaxation-activities without knowing w
 TYP: FREQ
 PRE: relaxation or problem_relaxation, irritated_relaxation
 SYM: emotions_relaxation
+
+QUE: These were the questions about activities. \nThe last few questions are about possible complaints that you have.
+TYP: INFO
+PRE:
+SYM: none
 
 QUE: Do you feel that you no longer have control over your life?
 TYP: FREQ
