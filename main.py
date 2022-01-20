@@ -67,7 +67,7 @@ class Program(wx.Frame):
 
     def show_next_panel(self, event):
         """
-        Shows next panel in the queue.
+        Shows next panel with satisfied prerequisites in the queue.
         """
         self.update_symptoms()
         i = 1
@@ -87,7 +87,7 @@ class Program(wx.Frame):
 
     def show_prev_panel(self, event):
         """
-        Shows previous panel in the queue.
+        Shows the previous panel that satisfies all its prerequisites.
         """
         self.update_symptoms()
         i = 1
