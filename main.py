@@ -178,7 +178,10 @@ class Program(wx.Frame):
                     f.write(" WITH SIGNS OF BURNOUT")
                 f.write(".")
             else:
-                f.write("BURNOUT.")
+                f.write("BURNOUT")
+                if healthy > burnout / 2:
+                    f.write(" WITH SIGNS OF BEING HEALTHY. THIS LEADS TO THE CONCLUSION STRESS")
+                f.write(".")
 
             f.write("\n")
 
