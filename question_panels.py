@@ -67,7 +67,7 @@ class QPanel(wx.Panel):
         Returns the symptom or None based on the stored answer
         :returns symptom or None
         """
-        return self.symptom
+        return None
 
     def set_symptoms(self, symptom):
         """
@@ -214,6 +214,7 @@ class ChoiceQPanel(QPanel):
             return self.symptom
         else:
             return '!' + self.symptom
+
     def check_prerequisites(self, flags):
         """
         Check if the question's prerequisites to be asked are satisfied.
