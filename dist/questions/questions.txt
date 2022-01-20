@@ -1,0 +1,269 @@
+QUE: You will get some questions about the current experiences in your life. These questions are categorised into general-, sleep-, activities-, and complaint questions. When you answer these questions it is important to compare your current situation to your normal experiences. \nYou can go the next question by pressing the button "Next question" and go back to the previous question by pressing the button "Prev question". The answers can only be submitted when all questions have been answered. \nThe outcome gotten from these questions will be discussed with you by your counselor in the next session. \nGood luck answering the questions!
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: First we will ask some open questions. \nPlease type your answer in the white textbox at the bottom of the screen.
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: What is your name?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your age?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your sex/gender identity?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is your education level?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: What is reason that you decided to go to the counsellor?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Have you already visited another professional for this reason?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Do you take medication for mental problems?
+TYP: OPEN
+PRE:
+SYM: none
+
+QUE: Next we have some general questions about different areas in your life. \nTo answer these questions, you can use the slider below by sliding the indicator to the desired value.
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Rate the area identity, self-image of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: identity
+
+QUE: Rate the area friends/family/social relations of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: social
+
+QUE: Rate the area relationships of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: relationship
+
+QUE: Rate the area development/growth of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: meaningfullness
+
+QUE: Rate the area living environment of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: living
+
+QUE: Rate the area finances of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE
+PRE:
+SYM: finances
+
+QUE: Rate the area work/career of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE8
+PRE:
+SYM: career
+
+QUE: Rate the area relaxation of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE8
+PRE:
+SYM: relaxation
+
+QUE: Rate the area health of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
+TYP: RATE9
+PRE:
+SYM: health
+
+QUE: We will now ask more specific questions. It is important to keep in mind that the questions need to be answered based on comparing the current situation with the for you normal situation, as explained before in the introduction. \n \nThe first questions will be about sleep.
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Do you have problems with sleep?
+TYP: FREQ
+PRE:
+SYM: Sleep_problems
+
+QUE: Do you sleep less than usual?
+TYP: FREQ
+PRE: Sleep_problems
+SYM: less_sleep
+
+QUE: Do you have trouble falling asleep?
+TYP: FREQ
+PRE: less_sleep
+SYM: difficulty_falling_asleep
+
+QUE: When you get up in the morning, do you lack the energy to start the day?
+TYP: FREQ
+PRE: Sleep_problems
+SYM: lack_energy_start_day
+
+QUE: Do you stay awake being worried at night?
+TYP: FREQ
+PRE: difficulty_falling_asleep
+SYM: Worried
+
+QUE: The following questions are about activities you do in a day. For this we make a distinction between activities that take effort and activities done for relaxation. \nEffort-activities are activities such as (volunteer) work, study, household and (informal) care. \nRelaxation-activities include activities such as hobbies, sports, and mental/physical self-care. \n \nWe will start with the questions about effort-activities.
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Do you have problems doing effort activities?
+TYP: FREQ
+PRE: !career
+SYM: problem_effort
+
+QUE: Do you feel mentally exhausted during effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: mental_exhaustion_during_effort
+
+QUE: Do you feel mentally exhausted and empty at the end of the (work)day?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: mental_exhaustion_after_effort
+
+QUE: Do you not get rested after completing effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: not_rested_effort
+
+QUE: Do you get tired quickly when you exert yourself during effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: physical_exhaustion_effort
+
+QUE: Do you feel a strong aversion to your effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: aversion_effort_activities
+
+QUE: Are you still able to do effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: ability_to_do_effort
+
+QUE: Are you cynical about your effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: cynical_effort
+
+QUE: Do you find it difficult to pay attention to your effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: distracted_effort
+
+QUE: Do you feel you have no control over your emotions during your effort-activities?
+TYP: FREQ
+PRE: career or problem_effort
+SYM: loss_control_emotions_effort
+
+QUE: Do you get annoyed easily when things don't go the way you want during your effort-activities?
+TYP: FREQ
+PRE: career or problem_effort, loss_control_emotions_effort
+SYM: annoyed_effort
+
+QUE: These were the questions about effort-activities. \n \nNow we will focus on the relaxation activities (e.g. hobbies and sports).
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Do you have problems doing relaxation activities?
+TYP: FREQ
+PRE: !relaxation
+SYM: problem_relaxation
+
+QUE: Do you feel too tired mentally to do relaxation-activities?
+TYP: FREQ
+PRE: relaxation or problem_relaxation
+SYM: mental_exhaustion_relaxation
+
+QUE: Do you feel too tired physically to do relaxation-activities?
+TYP: FREQ
+PRE: relaxation or problem_relaxation
+SYM: physical_exhaustion_relaxation
+
+QUE: Do you no longer feel interested and enthusiastic about your relaxation-activities?
+TYP: FREQ
+PRE: relaxation or problem_relaxation
+SYM: loss_interest_relaxation
+
+QUE: Are you cynical about your relaxation-activities?
+TYP: FREQ
+PRE: relaxation or problem_relaxation, loss_interest_relaxation
+SYM: cynical_relaxation
+
+QUE: Do you make mistakes in your relaxation-activities because you cannot concentrate?
+TYP: FREQ
+PRE: relaxation or problem_relaxation
+SYM: concentration_problem_relaxation
+
+QUE: Do you get irritated easily when things don't go the way you want with your relaxation-activities?
+TYP: FREQ
+PRE: relaxation or problem_relaxation
+SYM: irritated_relaxation
+
+QUE: Do you get angry or sad during your relaxation-activities without knowing why?
+TYP: FREQ
+PRE: relaxation or problem_relaxation, irritated_relaxation
+SYM: emotions_relaxation
+
+QUE: These were the questions about activities. \nThe last few questions are about possible complaints that you have.
+TYP: INFO
+PRE:
+SYM: none
+
+QUE: Do you feel that you no longer have control over your life?
+TYP: FREQ
+PRE: health
+SYM: no_control
+
+QUE: Do you feel rushed and tense?
+TYP: FREQ
+PRE: health
+SYM: rushed
+
+QUE: Do you feel anxious and/or do you suffer from panic attacks?
+TYP: FREQ
+PRE: health
+SYM: anxious
+
+QUE: Do you suffer from heart palpitations or chest pain?
+TYP: FREQ
+PRE: health
+SYM: chest_pain
+
+QUE: Do you suffer from stomach and/or intestinal problems?
+TYP: FREQ
+PRE: health
+SYM: stomach_problems
+
+QUE: Do you suffer from headaches?
+TYP: FREQ
+PRE: health
+SYM: headache
+
+QUE: Do you suffer from sore muscles? (For example, in the neck, shoulder, or back.)
+TYP: FREQ
+PRE: health
+SYM: sore_muscles

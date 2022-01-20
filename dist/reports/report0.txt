@@ -1,0 +1,26 @@
+What is your name?: dfdfaf
+What is your age?: dfdfd
+What is your sex/gender identity?: dfdfdf
+What is your education level?: dfdfdfd
+What is reason that you decided to go to the counsellor?: dfdfdfdfd
+Have you already visited another professional for this reason?: fdfdfdf
+Do you take medication for mental problems?: dfdfdfd
+Rate the area identity, self-image of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 6
+Rate the area friends/family/social relations of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 2
+Rate the area relationships of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 4
+Rate the area development/growth of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 6
+Rate the area living environment of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
+Rate the area finances of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
+Rate the area work/career of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
+Rate the area relaxation of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
+Rate the area health of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
+Do you have problems with sleep?: Never
+Do you have problems doing effort activities?: Never
+Do you have problems doing relaxation activities?: Never
+SYMPTOMS: none, social, relationship, 
+
+ Raw scores per category: 
+	HEALTHY:	30.0	STRESS :	0.0	BURNOUT:	0.0
+ Probabilities per category (based on scores): 
+	HEALTHY:	1.0	STRESS :	0.0	BURNOUT:	0.0
+ Based on the probabilities, the diagnosis is: EXTREMELY LIKELY HEALTHY.
