@@ -6,8 +6,14 @@ from questions import initialize_questions
 
 
 class Program(wx.Frame):
+    """
+    Class that takes care of the entire questionnaire and inference program.
+    """
 
     def __init__(self):
+        """
+        Initializes object of Program class
+        """
         super().__init__(None, title='Goodbye World :] :>')
 
         # initialize sizer
@@ -60,6 +66,9 @@ class Program(wx.Frame):
             self.symptoms.append(sy)
 
     def show_next_panel(self, event):
+        """
+        Shows next panel in the queue.
+        """
         self.update_symptoms()
         i = 1
         while self.question_number + i < len(self.panels) and not self.panels[
@@ -77,6 +86,9 @@ class Program(wx.Frame):
         self.Layout()
 
     def show_prev_panel(self, event):
+        """
+        Shows previous panel in the queue.
+        """
         self.update_symptoms()
         i = 1
         while not self.panels[self.question_number - i].check_prerequisites(self.symptoms):
