@@ -60,7 +60,7 @@ class QPanel(wx.Panel):
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
         self.main_sizer.Add(qtext, proportion=1,
                             flag=wx.ALL | wx.BOTTOM,
-                            border=5)
+                            border=0)
         self.SetSizer(self.main_sizer)
 
     def get_symptoms(self):

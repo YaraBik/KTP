@@ -66,7 +66,7 @@ SYM: relationship
 QUE: Rate the area development/growth of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
 TYP: RATE
 PRE:
-SYM: meaningfullness
+SYM: meaningfulness
 
 QUE: Rate the area living environment of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.
 TYP: RATE
@@ -226,7 +226,7 @@ SYM: irritated_relaxation
 QUE: Do you get angry or sad during your relaxation-activities without knowing why?
 TYP: FREQ
 PRE: relaxation or problem_relaxation, irritated_relaxation
-SYM: emotions_relaxation
+SYM: strong_emotions_relaxation
 
 QUE: These were the questions about activities. \nThe last few questions are about possible complaints that you have.
 TYP: INFO

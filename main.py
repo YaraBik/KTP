@@ -134,10 +134,7 @@ class Program(wx.Frame):
             for item in qa:
                 f.write('%s\n' % item)
 
-            f.write('SYMPTOMS: ')
-            for sy in self.symptoms:
-                f.write('%s, ' % sy)
-            f.write('\n')
+            self.add_symptoms(f)
 
             f.write('\n Raw scores per category: \n')
             f.write("\t{}:\t{}".format("HEALTHY", score[0]))
@@ -166,20 +163,77 @@ class Program(wx.Frame):
                 f.write("POSSIBLE ")
 
             if healthy > max(burnout, stress):
-                f.write("HEALTHY.")
+                f.write("HEALTHY")
                 if burnout > healthy / 2:
-                    " SIGNS OF BURNOUT."
+                    f.write("WITH SIGNS OF BURNOUT. THIS LEADS TO THE CONCLUSION STRESS")
                 if stress > healthy / 2:
-                    " SIGNS OF STRESS."
+                    f.write("WITH SIGNS OF STRESS")
+                f.write(".")
             elif stress > burnout:
                 f.write("STRESS")
                 if burnout > stress / 2:
-                    " SIGNS OF BURNOUT."
+                    f.write("WITH SIGNS OF BURNOUT.")
+                f.write(".")
             else:
                 f.write("BURNOUT")
+                if healthy > burnout / 2:
+                    f.write(" WITH SIGNS OF BEING HEALTHY. THIS LEADS TO THE CONCLUSION STRESS")
+                f.write(".")
 
             f.write("\n")
+
         self.Close()
+
+    def add_symptoms(self, f):
+        rating = ["identity", "social", "relationship", "meaningfulness", "living", "finances", "career", "relaxation", "health"]
+        sleep = ["sleep_problems", "less_sleep", "difficulty_falling_asleep", "lack_energy_start_day", "worried"]
+        effort = ["career", "problem_effort", "mental_exhaustion_during_effort", "mental_exhaustion_after_effort", "not_rested_effort", "physical_exhaustion_effort", "aversion_effort_activities", "ability_to_do_effort", "cynical_effort", "distracted_effort", "loss_control_emotions_effort", "annoyed_effort"]
+        relaxation = ["relaxation", "problem_relaxation", "mental_exhaustion_relaxation", "physical_exhaustion_relaxation", "loss_interest_relaxation", "cynical_relaxation", "concentration_problem_relaxation", "irritated_relaxation", "strong_emotions_relaxation"]
+        complaint = ["no_control", "rushed", "anxious", "chest_pain", "stomach_problems", "headache", "sore_muscles"]
+
+        rating_symptoms = []
+        sleep_symptoms = []
+        effort_symptoms = []
+        relaxation_symptoms = []
+        complaint_symptoms = []
+        for sy in self.symptoms:
+            if sy in rating:
+                rating_symptoms.append(sy)
+            elif sy in sleep:
+                sleep_symptoms.append(sy)
+            elif sy in effort:
+                effort_symptoms.append(sy)
+            elif sy in relaxation:
+                relaxation_symptoms.append(sy)
+            elif sy in complaint:
+                complaint_symptoms.append(sy)
+
+        f.write('\nSYMPTOMPS PER CATEGORY\n')
+
+        f.write('AREA OF LIFE SYMPTOMS: \n')
+        for sy in rating_symptoms:
+            f.write('%s, ' % sy)
+        f.write('\n')
+
+        f.write('SLEEP SYMPTOMS: \n')
+        for sy in sleep_symptoms:
+            f.write('%s, ' % sy)
+        f.write('\n')
+
+        f.write('EFFORT ACTIVITIES SYMPTOMS: \n')
+        for sy in effort_symptoms:
+            f.write('%s, ' % sy)
+        f.write('\n')
+
+        f.write('RELAXATION ACTIVITIES SYMPTOMS: \n')
+        for sy in relaxation_symptoms:
+            f.write('%s, ' % sy)
+        f.write('\n')
+
+        f.write('COMPLAINT SYMPTOMS: \n')
+        for sy in complaint_symptoms:
+            f.write('%s, ' % sy)
+        f.write('\n')
 
     def autocomplete(self):
         """
