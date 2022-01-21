@@ -14,7 +14,7 @@ sys
 
 RUN USING:
 for manual entry of answers: "python3 main.py or python main.py" (or click the green triangle in PyCharm).
-to run with (random) autocompletion of the answers: "python3 main.py autocomplete" or "python main.py autocomplete"
+to run with (random) autocompletion of the answers: "python3 main.py --autocomplete" or "python main.py --autocomplete"
 
 
 KNOWN BUGS:

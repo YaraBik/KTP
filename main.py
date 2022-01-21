@@ -268,6 +268,6 @@ if __name__ == '__main__':
     frame = Program()
     frame.Show()
     print(sys.argv)
-    if len(sys.argv) >= 2 and sys.argv[1] == 'autocomplete':
+    if len(sys.argv) >= 2 and sys.argv[1] == '--autocomplete':
         frame.autocomplete()
     app.MainLoop()
