@@ -1,26 +1,64 @@
-What is your name?: dfdfaf
-What is your age?: dfdfd
-What is your sex/gender identity?: dfdfdf
-What is your education level?: dfdfdfd
-What is reason that you decided to go to the counsellor?: dfdfdfdfd
-Have you already visited another professional for this reason?: fdfdfdf
-Do you take medication for mental problems?: dfdfdfd
-Rate the area identity, self-image of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 6
-Rate the area friends/family/social relations of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 2
-Rate the area relationships of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 4
-Rate the area development/growth of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 6
+What is your name?: [redacted]
+What is your age?: [redacted]
+What is your sex/gender identity?: [redacted]
+What is your education level?: [redacted]
+What is reason that you decided to go to the counsellor?: [redacted]
+Have you already visited another professional for this reason?: [redacted]
+Do you take medication for mental problems?: [redacted]
+Rate the area identity, self-image of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 8
+Rate the area friends/family/social relations of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 6
+Rate the area relationships of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 9
+Rate the area development/growth of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 5
 Rate the area living environment of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
-Rate the area finances of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
-Rate the area work/career of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
-Rate the area relaxation of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
-Rate the area health of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 10
-Do you have problems with sleep?: Never
-Do you have problems doing effort activities?: Never
-Do you have problems doing relaxation activities?: Never
-SYMPTOMS: none, social, relationship, 
+Rate the area finances of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 9
+Rate the area work/career of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 8
+Rate the area relaxation of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 3
+Rate the area health of your life how you currently experience it. Here, 10 is excellent and 0 is the worst possible.: 7
+Do you have problems with sleep?: Sometimes
+Do you sleep less than usual?: Often
+Do you have trouble falling asleep?: Often
+When you get up in the morning, do you lack the energy to start the day?: Always
+Do you stay awake being worried at night?: Rarely
+Do you have problems doing effort activities?: Sometimes
+Do you feel mentally exhausted during effort-activities?: Rarely
+Do you feel mentally exhausted and empty at the end of the (work)day?: Rarely
+Do you not get rested after completing effort-activities?: Sometimes
+Do you get tired quickly when you exert yourself during effort-activities?: Often
+Do you feel a strong aversion to your effort-activities?: Often
+Are you still able to do effort-activities?: Never
+Are you cynical about your effort-activities?: Rarely
+Do you find it difficult to pay attention to your effort-activities?: Always
+Do you feel you have no control over your emotions during your effort-activities?: Sometimes
+Do you get annoyed easily when things don't go the way you want during your effort-activities?: Sometimes
+Do you feel too tired mentally to do relaxation-activities?: Rarely
+Do you feel too tired physically to do relaxation-activities?: Sometimes
+Do you no longer feel interested and enthusiastic about your relaxation-activities?: Often
+Are you cynical about your relaxation-activities?: Sometimes
+Do you make mistakes in your relaxation-activities because you cannot concentrate?: Rarely
+Do you get irritated easily when things don't go the way you want with your relaxation-activities?: Sometimes
+Do you get angry or sad during your relaxation-activities without knowing why?: Rarely
+Do you feel that you no longer have control over your life?: Sometimes
+Do you feel rushed and tense?: Often
+Do you feel anxious and/or do you suffer from panic attacks?: Sometimes
+Do you suffer from heart palpitations or chest pain?: Rarely
+Do you suffer from stomach and/or intestinal problems?: Rarely
+Do you suffer from headaches?: Rarely
+Do you suffer from sore muscles? (For example, in the neck, shoulder, or back.): Often
+
+SYMPTOMPS PER CATEGORY
+AREA OF LIFE SYMPTOMS: 
+relaxation, health, 
+SLEEP SYMPTOMS: 
+less_sleep, difficulty_falling_asleep, lack_energy_start_day, 
+EFFORT ACTIVITIES SYMPTOMS: 
+problem_effort, not_rested_effort, physical_exhaustion_effort, aversion_effort_activities, distracted_effort, loss_control_emotions_effort, annoyed_effort, 
+RELAXATION ACTIVITIES SYMPTOMS: 
+physical_exhaustion_relaxation, loss_interest_relaxation, cynical_relaxation, irritated_relaxation, 
+COMPLAINT SYMPTOMS: 
+no_control, rushed, anxious, sore_muscles, 
 
  Raw scores per category: 
-	HEALTHY:	30.0	STRESS :	0.0	BURNOUT:	0.0
+	HEALTHY:	60.0	STRESS :	185.0	BURNOUT:	55.0
  Probabilities per category (based on scores): 
-	HEALTHY:	1.0	STRESS :	0.0	BURNOUT:	0.0
- Based on the probabilities, the diagnosis is: EXTREMELY LIKELY HEALTHY.
+	HEALTHY:	0.2	STRESS :	0.617	BURNOUT:	0.183
+ Based on the probabilities, the diagnosis is: LIKELY STRESS.
