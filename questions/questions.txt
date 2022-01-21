@@ -158,7 +158,7 @@ TYP: FREQ
 PRE: career or problem_effort
 SYM: aversion_effort_activities
 
-QUE: Are you still able to do effort-activities?
+QUE: Are you not able to do effort-activities anymore?
 TYP: FREQ
 PRE: career or problem_effort
 SYM: ability_to_do_effort
