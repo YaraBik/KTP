@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os
+import sys
+
 import wx
 from questions import initialize_questions
 
@@ -265,5 +267,7 @@ if __name__ == '__main__':
     app = wx.App(redirect=False)
     frame = Program()
     frame.Show()
-    # frame.autocomplete()
+    print(sys.argv)
+    if len(sys.argv) >= 2 and sys.argv[1] == 'autocomplete':
+        frame.autocomplete()
     app.MainLoop()

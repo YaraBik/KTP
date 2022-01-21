@@ -131,5 +131,6 @@ def initialize_questions(parent):
     add_questions(parent, qpanels, os.getcwd() + '/questions/questions.txt')
 
     qpanels.append(InfoPanel(parent, 'Thank you for completing these questions. Please press \'Submit answers\' to '
-                                     'submit.'))
+                                     'submit.'
+                                     '\nPlease note that answers cannot be submitted until all questions are answered.'))
     return qpanels
